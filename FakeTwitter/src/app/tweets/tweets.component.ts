@@ -11,11 +11,13 @@ import { TweetService } from '../services/tweet.service';
 export class TweetsComponent implements OnInit {
 
   tweets: Tweet[];
+  user: string;
 
   constructor(private tweetService: TweetService) { }
 
   ngOnInit() {
     this.tweets = this.tweetService.getTweets();
+    this.user = 'Gregor';
   }
 
 }

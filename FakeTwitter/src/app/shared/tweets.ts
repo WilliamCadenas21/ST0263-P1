@@ -3,7 +3,7 @@ import { Tweet } from './tweet';
 export const TWEETS: Tweet[] = [
     {
         author: 'Gregor',
-        content: 'Tweet de prueba de Gregor jio aoi jflad iaodjfoadfjd diddfj aoidfj doa odijf aoidj f jfioadjfo adjfoia sdjfa sdipijoizzz',
+        content: 'Tweet de prueba de Gregor',
         topic: 'default',
         date: '2019-01-04T10:50:29.478832Z'
     },
@@ -18,65 +18,5 @@ export const TWEETS: Tweet[] = [
         content: 'Tweet de prueba de Jin',
         topic: 'default',
         date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
-    {
-        author: 'Jin',
-        content: 'Tweet de prueba de Jin',
-        topic: 'default',
-        date: '2019-03-04T10:50:29.478832Z'
-    },
+    }
 ];
