@@ -4,26 +4,25 @@ import { Tweet } from '../shared/tweet';
 import { TWEETS } from '../shared/tweets';
 import { Filter } from '../shared/filter';
 
-import { TweetWraper } from '../shared/tweetWraper';
+import { TweetWrapper } from '../shared/tweetWrapper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TweetService {
 
-  private tweetWraper : TweetWraper;
-  private tweets : Tweet[];
+  private tweetWrapper: TweetWrapper;
+  private tweets: Tweet[];
 
   constructor() {
     this.tweets = TWEETS;
-    this.tweetWraper = {
-      nothing: '',
+    this.tweetWrapper = {
       tweets: this.tweets
     }
   }
 
-  getTweets() : Observable<TweetWraper> {
-    return of (this.tweetWraper);
+  getTweets() : Observable<TweetWrapper> {
+    return of (this.tweetWrapper);
   }
 
   filterTweets(filter : Filter) {
@@ -36,7 +35,16 @@ export class TweetService {
         this.tweets = this.tweets.filter((tweet) => (tweet.topic === filter.topic));
       }
     }
-    this.tweetWraper.tweets = this.tweets;
+    this.tweetWrapper.tweets = this.tweets;
+  }
+
+  pushTweet(tweet: Tweet) {
+    this.tweets.push(tweet);
+    this.tweetWrapper.tweets = this.tweets;
+  }
+
+  deleteTweet(tweet: Tweet) {
+
   }
 
 }

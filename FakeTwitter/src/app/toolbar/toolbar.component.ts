@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
-
 import { LoginService } from '../services/login.service';
+import { UserWrapper } from '../shared/userWrapper';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,16 +12,19 @@ import { LoginService } from '../services/login.service';
 })
 export class ToolbarComponent implements OnInit {
 
+  userWrapper: UserWrapper;
   user: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.getUserWrapper()
+      .subscribe((userWrapper) => this.userWrapper = userWrapper);
   }
 
   openLoginForm() {
     this.dialog.open(LoginComponent);
-    this.user = "foo";
   }
 
   openSignUpForm() {
@@ -29,6 +32,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   logOut() {
-    this.user = null;
+    this.loginService.logout();
   }
 }

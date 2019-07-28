@@ -10,7 +10,9 @@ import { TweetService } from '../services/tweet.service';
 
 import { Filter } from '../shared/filter';
 import { Tweet } from '../shared/tweet';
-import { TweetWraper } from '../shared/tweetWraper';
+import { TweetWrapper } from '../shared/tweetWrapper';
+import { UserWrapper } from '../shared/userWrapper';
+
 import { ComposeComponent } from '../compose/compose.component';
 
 @Component({
@@ -21,7 +23,8 @@ import { ComposeComponent } from '../compose/compose.component';
 export class HomeComponent implements OnInit {
 
   username: string;
-  tweetWraper: TweetWraper;
+  tweetWrapper: TweetWrapper;
+  userWrapper: UserWrapper;
   filterForm: FormGroup;
   filter: Filter;
   @ViewChild('fform', {static: false}) filterFormDirective;
@@ -38,7 +41,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.tweetService.getTweets()
-      .subscribe((tweetWraper) => this.tweetWraper = tweetWraper);
+      .subscribe((tweetWrapper) => this.tweetWrapper = tweetWrapper);
+    this.loginService.getUserWrapper()
+      .subscribe((userWrapper) => this.userWrapper = userWrapper);
   }
 
   createForm() {
@@ -50,11 +55,20 @@ export class HomeComponent implements OnInit {
 
   onSubmit() {
     this.filter = this.filterForm.value;
-    console.log(this.filter);
     this.tweetService.filterTweets(this.filter);
+    console.log(this.userWrapper);
+  }
+
+  deleteTweet() {
+
   }
 
   openComposeForm() {
     this.dialog.open(ComposeComponent);
   }
+
+  openEditForm() {
+
+  }
+
 }

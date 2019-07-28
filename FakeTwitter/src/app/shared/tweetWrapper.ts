@@ -1,6 +1,5 @@
 import { Tweet } from './tweet';
 
-export class TweetWraper {
-    nothing: string;
+export class TweetWrapper {
     tweets: Tweet[]
 }

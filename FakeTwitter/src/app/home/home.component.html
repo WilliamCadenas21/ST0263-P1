@@ -9,7 +9,6 @@
         <h3>
             Filter
         </h3>
-        <p>{{filterForm.value | json}} {{filterForm.status | json}}</p>
         <form novalidate [formGroup]="filterForm" #fform="ngForm" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
@@ -25,17 +24,23 @@
                 Filter
             </button>
         </form>
-        <mat-divider class="space_top"></mat-divider>
-        <button class="space_top" mat-raised-button color="primary" (click)="openComposeForm()">Compose</button>
+        <mat-divider class="space-top"></mat-divider>
+        <div *ngIf="userWrapper.user">
+            <button class="space-top" mat-raised-button color="primary" (click)="openComposeForm()">Compose</button>
+        </div>
     </div>
 
     <div fxFlex="80">
         <h3>Feed</h3>
-        <mat-list *ngIf="tweetWraper">
-            <mat-list-item *ngFor="let tweet of tweetWraper.tweets">
-                <p matLine>@{{tweet.author}} {{tweet.date | date}}</p>
-                <p matLine>#{{tweet.topic}}</p>
+        <mat-list *ngIf="tweetWrapper">
+            <mat-list-item *ngFor="let tweet of tweetWrapper.tweets">
+                <p matLine>@{{tweet.author}}</p>
+                <p class="gray-text" matLine>#{{tweet.topic}} {{tweet.date | date}}</p>
                 <p matLine>{{tweet.content}}</p>
+                <div *ngIf="userWrapper.user && userWrapper.user.username == tweet.author" matLine>
+                    <button mat-raised-button class="separate" (click)="openEditForm()">Edit</button>
+                    <button mat-raised-button class="separate" (click)="deleteTweet()">Delete</button>
+                </div>
             </mat-list-item>
         </mat-list>
     </div>

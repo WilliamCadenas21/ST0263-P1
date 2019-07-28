@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
+import { User } from '../shared/user';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +12,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  user: User;
   loginForm: FormGroup;
   @ViewChild('fform', {static: false}) loginFormDirective;
 
@@ -25,9 +30,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  user = {username: '', password: ''};
-
-  constructor(private lb: FormBuilder) {
+  constructor(private lb: FormBuilder,
+    private loginService: LoginService,
+    public dialogRef: MatDialogRef<LoginComponent>) {
     this.createForm();
    }
 
@@ -66,7 +71,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.user = this.loginForm.value;
+    this.loginService.login(this.user);
+    this.dialogRef.close();
   }
 
 }
