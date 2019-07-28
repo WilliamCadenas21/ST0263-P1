@@ -2,52 +2,52 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-compose',
+  templateUrl: './compose.component.html',
+  styleUrls: ['./compose.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ComposeComponent implements OnInit {
 
-  loginForm: FormGroup;
-  @ViewChild('fform', {static: false}) loginFormDirective;
+  composeForm: FormGroup;
+  @ViewChild('fform', {static: false}) composeFormDirective;
 
   formErrors = {
-    'username': '',
-    'password': ''
-  };
+    'topic': '',
+    'comment': ''
+  }
 
   validationMessages = {
-    'username': {
-      'required': 'Username is required'
+    'topic': {
+      'required': 'A topic is required',
+      'maxlength': 'The topic cannot be more than 25 characters long'
     },
-    'password': {
-      'required': 'Password is required'
+    'comment': {
+      'required': 'A comment is required',
+      'maxlength': 'The comment cannot be more than 500 characters long'
     }
   }
 
-  user = {username: '', password: ''};
-
-  constructor(private lb: FormBuilder) {
+  constructor(private cb: FormBuilder) {
     this.createForm();
-   }
+  }
 
   ngOnInit() {
   }
 
   createForm() {
-    this.loginForm = this.lb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+    this.composeForm = this.cb.group({
+      topic: ['', [Validators.required, Validators.maxLength(25)]],
+      comment: ['', [Validators.required, Validators.maxLength(500)]]
     });
 
-    this.loginForm.valueChanges
+    this.composeForm.valueChanges
       .subscribe((data) => this.onValueChanged(data));
   }
 
   onValueChanged(data?: any) {
-    if (!this.loginForm) { return; }
+    if (!this.composeForm) { return; }
 
-    const form = this.loginForm;
+    const form = this.composeForm;
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         //clear previous error message (if any)

@@ -21,6 +21,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginComponent } from './login/login.component';
+import { ComposeComponent } from './compose/compose.component';
+import { SingupComponent } from './singup/singup.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     ToolbarComponent,
     LoginComponent,
+    ComposeComponent,
+    SingupComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ import { LoginComponent } from './login/login.component';
   ],
   entryComponents: [
     LoginComponent,
+    ComposeComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
 
+import { LoginService } from '../services/login.service';
+
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -18,8 +20,12 @@ export class ToolbarComponent implements OnInit {
   }
 
   openLoginForm() {
-    this.dialog.open(LoginComponent, {width:'500px', height: '450px'});
+    this.dialog.open(LoginComponent);
     this.user = "foo";
+  }
+
+  openSignUpForm() {
+
   }
 
   logOut() {

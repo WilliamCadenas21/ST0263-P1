@@ -16,6 +16,10 @@ export class LoginService {
     this.user.username = username;
   }
 
+  logout() {
+    this.user = null;
+  }
+
   getUsername() : Observable<string> {
     return (this.user) ? of (this.user.username) : null;
   }

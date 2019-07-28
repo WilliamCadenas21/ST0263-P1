@@ -25,7 +25,10 @@
                 Filter
             </button>
         </form>
+        <mat-divider class="space_top"></mat-divider>
+        <button class="space_top" mat-raised-button color="primary" (click)="openComposeForm()">Compose</button>
     </div>
+
     <div fxFlex="80">
         <h3>Feed</h3>
         <mat-list *ngIf="tweetWraper">
@@ -36,4 +39,5 @@
             </mat-list-item>
         </mat-list>
     </div>
+
 </div>
