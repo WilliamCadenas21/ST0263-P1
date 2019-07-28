@@ -10,7 +10,7 @@ export const TWEETS: Tweet[] = [
     {
         author: 'Mikhail',
         content: 'Tweet de prueba de Mikhail',
-        topic: 'default',
+        topic: 'test',
         date: '2019-02-04T10:50:29.478832Z'
     },
     {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
-import { FilterComponent } from '../filter/filter.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,16 +10,19 @@ import { FilterComponent } from '../filter/filter.component';
 })
 export class ToolbarComponent implements OnInit {
 
+  user: string;
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  openFilterForm() {
-    this.dialog.open(FilterComponent, {width: '500px', height: '450px'});
-  }
-
   openLoginForm() {
     this.dialog.open(LoginComponent, {width:'500px', height: '450px'});
+    this.user = "foo";
+  }
+
+  logOut() {
+    this.user = null;
   }
 }

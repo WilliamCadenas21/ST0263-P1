@@ -9,43 +9,48 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { TweetService } from './services/tweet.service';
+import { LoginService } from './services/login.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { TweetsComponent } from './tweets/tweets.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginComponent } from './login/login.component';
-import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TweetsComponent,
     ToolbarComponent,
     LoginComponent,
-    FilterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatListModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatGridListModule
   ],
   providers: [
-    TweetService
+    TweetService,
+    LoginService
   ],
   entryComponents: [
     LoginComponent,
-    FilterComponent
   ],
   bootstrap: [AppComponent]
 })

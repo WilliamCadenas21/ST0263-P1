@@ -1,3 +1,39 @@
-<div>
-    <app-tweets></app-tweets>
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+
+    <div fxFlex="20">
+        <h3>
+            Filter
+        </h3>
+        <p>{{filterForm.value | json}} {{filterForm.status | json}}</p>
+        <form novalidate [formGroup]="filterForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <input matInput formControlName="author" placeholder="Author" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <input matInput formControlName="topic" placeholder="Topic" type="text">
+                </mat-form-field>
+            </p>
+            <button type="submit" mat-raised-button color="primary">
+                Filter
+            </button>
+        </form>
+    </div>
+    <div fxFlex="80">
+        <h3>Feed</h3>
+        <mat-list *ngIf="tweetWraper">
+            <mat-list-item *ngFor="let tweet of tweetWraper.tweets">
+                <p matLine>@{{tweet.author}} {{tweet.date | date}}</p>
+                <p matLine>#{{tweet.topic}}</p>
+                <p matLine>{{tweet.content}}</p>
+            </mat-list-item>
+        </mat-list>
+    </div>
 </div>

@@ -1,6 +1,10 @@
 <mat-toolbar color="primary">
-    <span>FakeTwitter</span>
+    <span>Comments</span>
     <span class="flex-spacer"></span>
-    <button mat-button (click)="openFilterForm()">Filter</button>
-    <button mat-button (click)="openLoginForm()">Login</button>
+    <div *ngIf="!user">
+        <button mat-button (click)="openLoginForm()">Login</button>
+    </div>
+    <div *ngIf="user">
+        <button mat-button (click)="logOut()">Logout</button>
+    </div>
 </mat-toolbar>
