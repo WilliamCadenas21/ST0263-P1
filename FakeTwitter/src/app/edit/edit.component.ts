@@ -35,12 +35,10 @@ export class EditComponent implements OnInit {
     private tweetService: TweetService,
     public dialogRef: MatDialogRef<EditComponent>,
      @Inject(MAT_DIALOG_DATA) public data: any) {
+       this.tweet = this.data;
   }
 
   ngOnInit() {
-    this.tweetService.getTweet(this.data)
-      .subscribe((tweet) => this.tweet = tweet);
-
     this.createForm();
   }
 
@@ -77,8 +75,9 @@ export class EditComponent implements OnInit {
 
   onSubmit() {
     let values = this.editForm.value;
-    console.log(values);
-    this.tweetService.updateTweet(this.tweet.id, values.topic, values.comment);
+    this.tweet.topic = values.topic;
+    this.tweet.content = values.comment;
+    this.tweetService.updateTweet(this.tweet);
     this.dialogRef.close()
   }
 

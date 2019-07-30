@@ -4,18 +4,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
-import { MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { TweetService } from './services/tweet.service';
 import { LoginService } from './services/login.service';
+
+import { baseURL } from './shared/baseurl';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -36,24 +38,25 @@ import { EditComponent } from './edit/edit.component';
     EditComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatListModule,
-    MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule
   ],
   providers: [
     TweetService,
-    LoginService
+    LoginService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   entryComponents: [
     LoginComponent,

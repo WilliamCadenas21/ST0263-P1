@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { TweetService } from '../services/tweet.service';
 import { MatDialogRef } from '@angular/material';
+import { Tweet } from '../shared/tweet';
 
 @Component({
   selector: 'app-compose',
@@ -30,6 +31,7 @@ export class ComposeComponent implements OnInit {
   }
 
   constructor(private cb: FormBuilder,
+    private tweetService: TweetService,
     public dialogRef: MatDialogRef<ComposeComponent>) {
     this.createForm();
   }
@@ -69,7 +71,7 @@ export class ComposeComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO
+
   }
 
 }
