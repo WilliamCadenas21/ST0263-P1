@@ -23,6 +23,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginComponent } from './login/login.component';
 import { ComposeComponent } from './compose/compose.component';
 import { SingupComponent } from './singup/singup.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SingupComponent } from './singup/singup.component';
     LoginComponent,
     ComposeComponent,
     SingupComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { SingupComponent } from './singup/singup.component';
   ],
   entryComponents: [
     LoginComponent,
-    ComposeComponent
+    ComposeComponent,
+    EditComponent
   ],
   bootstrap: [AppComponent]
 })

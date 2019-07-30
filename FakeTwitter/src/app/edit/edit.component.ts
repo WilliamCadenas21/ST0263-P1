@@ -1,17 +1,19 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TweetService } from '../services/tweet.service';
-import { MatDialogRef } from '@angular/material';
+import { Tweet } from '../shared/tweet';
 
 @Component({
-  selector: 'app-compose',
-  templateUrl: './compose.component.html',
-  styleUrls: ['./compose.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class ComposeComponent implements OnInit {
+export class EditComponent implements OnInit {
 
-  composeForm: FormGroup;
-  @ViewChild('fform', {static: false}) composeFormDirective;
+  tweet: Tweet;
+  editForm: FormGroup;
+  @ViewChild('fform', {static: false}) editFormDirective;
 
   formErrors = {
     'topic': '',
@@ -29,28 +31,33 @@ export class ComposeComponent implements OnInit {
     }
   }
 
-  constructor(private cb: FormBuilder,
-    public dialogRef: MatDialogRef<ComposeComponent>) {
-    this.createForm();
+  constructor(private eb: FormBuilder,
+    private tweetService: TweetService,
+    public dialogRef: MatDialogRef<EditComponent>,
+     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
+    this.tweetService.getTweet(this.data)
+      .subscribe((tweet) => this.tweet = tweet);
+
+    this.createForm();
   }
 
   createForm() {
-    this.composeForm = this.cb.group({
-      topic: ['', [Validators.required, Validators.maxLength(25)]],
-      comment: ['', [Validators.required, Validators.maxLength(500)]]
+    this.editForm = this.eb.group({
+      topic: [this.tweet.topic, [Validators.required, Validators.maxLength(25)]],
+      comment: [this.tweet.content, [Validators.required, Validators.maxLength(500)]]
     });
 
-    this.composeForm.valueChanges
+    this.editForm.valueChanges
       .subscribe((data) => this.onValueChanged(data));
   }
 
   onValueChanged(data?: any) {
-    if (!this.composeForm) { return; }
+    if (!this.editForm) { return; }
 
-    const form = this.composeForm;
+    const form = this.editForm;
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         //clear previous error message (if any)
@@ -69,7 +76,10 @@ export class ComposeComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO
+    let values = this.editForm.value;
+    console.log(values);
+    this.tweetService.updateTweet(this.tweet.id, values.topic, values.comment);
+    this.dialogRef.close()
   }
 
 }

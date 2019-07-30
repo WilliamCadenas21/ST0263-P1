@@ -25,6 +25,10 @@ export class TweetService {
     return of (this.tweetWrapper);
   }
 
+  getTweet(id: string) : Observable<Tweet> {
+    return of (this.tweetWrapper.tweets.filter((tweet) => (tweet.id === id))[0]);
+  }
+
   filterTweets(filter : Filter) {
     this.tweets = TWEETS;
     if (filter) {
@@ -35,6 +39,12 @@ export class TweetService {
         this.tweets = this.tweets.filter((tweet) => (tweet.topic === filter.topic));
       }
     }
+    this.tweetWrapper.tweets = this.tweets;
+  }
+
+  updateTweet(id: string, topic: string, comment: string) {
+    this.tweets.filter((tweet) => (tweet.id === id))[0].content = comment;
+    this.tweets.filter((tweet) => (tweet.id === id))[0].topic = topic;
     this.tweetWrapper.tweets = this.tweets;
   }
 

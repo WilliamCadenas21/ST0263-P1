@@ -40,8 +40,8 @@
                 <p class="gray-text" matLine>#{{tweet.topic}} {{tweet.date | date}}</p>
                 <p matLine>{{tweet.content}}</p>
                 <div *ngIf="userWrapper.user && userWrapper.user.username == tweet.author" matLine>
-                    <button mat-raised-button class="separate" (click)="openEditForm()">Edit</button>
-                    <button mat-raised-button class="separate" (click)="deleteTweet()">Delete</button>
+                    <button mat-raised-button class="separate" (click)="openEditForm(tweet.id)">Edit</button>
+                    <button mat-raised-button class="separate" (click)="deleteTweet(tweet.id)">Delete</button>
                 </div>
             </mat-list-item>
         </mat-list>

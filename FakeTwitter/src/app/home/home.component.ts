@@ -14,6 +14,7 @@ import { TweetWrapper } from '../shared/tweetWrapper';
 import { UserWrapper } from '../shared/userWrapper';
 
 import { ComposeComponent } from '../compose/compose.component';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -59,7 +60,7 @@ export class HomeComponent implements OnInit {
     console.log(this.userWrapper);
   }
 
-  deleteTweet() {
+  deleteTweet(id: string) {
 
   }
 
@@ -67,8 +68,10 @@ export class HomeComponent implements OnInit {
     this.dialog.open(ComposeComponent);
   }
 
-  openEditForm() {
-
+  openEditForm(id: string) {
+    this.dialog.open(EditComponent, {
+      data: id
+    });
   }
 
 }

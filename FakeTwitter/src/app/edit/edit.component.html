@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
-    Compose
+    Edit
     <span class="flex-spacer"></span>
     <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<form novalidate [formGroup]="composeForm" ##fform="ngForm" (ngSubmit)="onSubmit()">
+<form novalidate [formGroup]="editForm" ##fform="ngForm" (ngSubmit)="onSubmit()">
     <p>
         <mat-form-field>
             <input matInput formControlName="topic" placeholder="Topic" type="text" required>
@@ -25,5 +25,5 @@
     <span class="flex-spacer"></span>
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-raised-button color="primary" type="submit"
-        [disabled]="composeForm.invalid">Publish</button>
+        [disabled]="editForm.invalid">Change</button>
 </form>
