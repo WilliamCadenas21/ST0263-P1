@@ -6,14 +6,11 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 
-import { TweetWrapper } from '../shared/tweetWrapper';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TweetService {
 
-  private tweetWrapper: TweetWrapper;
   private tweets: Tweet[];
 
   constructor(private http: HttpClient) { }
