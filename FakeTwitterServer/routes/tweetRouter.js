@@ -1,50 +1,75 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const Tweets = require('../models/tweets');
 
 const tweetRouter = express.Router();
 
 tweetRouter.use(bodyParser.json());
 
 tweetRouter.route('/')
-.all((req, res, next) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    next();
-})
 .get((req, res, next) => {
-    res.end('Will send all the tweets');
+    Tweets.find({})
+        .then((tweets) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(tweets);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
 })
 .post((req, res, next) => {
-    res.end('Will create tweet with autor: ' + req.body.author
-    + ' with topic: ' + req.body.topic
-    + ' with content: ' + req.body.content
-    + ' with date: ' + req.body.date);
+    Tweets.create(req.body)
+        .then((tweet) => {
+            console.log('Tweet created ', tweet);
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(tweet);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
 })
 .put((req, res, next) => {
     res.statusCode = 403;
     res.end('PUT not supported');
 })
 .delete((req, res, next) => {
-    res.end('Deleting all the dishes');
+    res.statusCode = 403;
+    res.end('DELETE operation not supported')
 });
 
 tweetRouter.route('/:tweetId')
 .get((req, res, next) => {
-    res.end('Will send dish: ' + req.params.tweetId);
+    Tweets.findById(req.params.tweetId)
+        .then((tweet) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(tweet);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
 })
 .post((req, res, next) => {
     res.statusCode = 403;
     res.end('POST not supported');
 })
 .put((req, res, next) => {
-    res.write('Updating the tweet: ' + req.params.id + '\n'); // just for show
-    res.end('Will update the tweet with author: ' + req.body.author
-    + ' with topic: ' + req.body.topic
-    + ' with content: ' + req.body.content
-    + ' with date: ' + req.body.date);
+    Tweets.findByIdAndUpdate(req.params.tweetId, {
+        $set: req.body
+    }, { new: true })
+        .then((tweet) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(tweet);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
 })
 .delete((req, res, next) => {
-    res.end('Will delete the tweet' + req.params.id);
+    Tweets.findByIdAndRemove(req.params.tweetId)
+        .then((resp) => {
+            req.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(resp);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
 });
 
 module.exports = tweetRouter;

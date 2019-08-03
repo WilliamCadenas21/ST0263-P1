@@ -8,6 +8,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tweetRouter = require('./routes/tweetRouter');
 
+const mongoose = require('mongoose');
+const Tweets = require('./models/tweets');
+
+const url = 'mongodb://localhost:27017/fakeTwitterDB'
+const connect = mongoose.connect(url);
+
+connect.then((db) => {
+  console.log('Connected correctly to server');
+}, (err) => { console.log(err); });
+
 var app = express();
 
 // view engine setup
