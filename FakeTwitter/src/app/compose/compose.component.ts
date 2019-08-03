@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { TweetService } from '../services/tweet.service';
-import { MatDialogRef } from '@angular/material';
-import { Tweet } from '../shared/tweet';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-compose',
@@ -11,6 +10,7 @@ import { Tweet } from '../shared/tweet';
 })
 export class ComposeComponent implements OnInit {
 
+  username: string;
   composeForm: FormGroup;
   @ViewChild('fform', {static: false}) composeFormDirective;
 
@@ -32,11 +32,13 @@ export class ComposeComponent implements OnInit {
 
   constructor(private cb: FormBuilder,
     private tweetService: TweetService,
-    public dialogRef: MatDialogRef<ComposeComponent>) {
-    this.createForm();
+    public dialogRef: MatDialogRef<ComposeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.username = this.data;
   }
 
   ngOnInit() {
+    this.createForm();
   }
 
   createForm() {
@@ -71,7 +73,9 @@ export class ComposeComponent implements OnInit {
   }
 
   onSubmit() {
-
+    let values = this.composeForm.value;
+    this.tweetService.pushTweet(this.username, values.topic, values.comment);
+    this.dialogRef.close();
   }
 
 }

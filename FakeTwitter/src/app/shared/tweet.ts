@@ -1,7 +1,7 @@
 export class Tweet {
-    id: string;
+    _id: string;
     author: string;
     topic: string;
     content: string;
-    date: string;
+    createdAt: string;
 }

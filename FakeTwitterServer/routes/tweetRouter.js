@@ -10,13 +10,31 @@ tweetRouter.use(bodyParser.json());
 
 tweetRouter.route('/')
 .get((req, res, next) => {
-    Tweets.find({})
+    if (req.query['author']) {
+        Tweets.find({ author: req.query['author'] })
         .then((tweets) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json(tweets);
         }, (err) => next(err)) // Handle error
         .catch((err) => next(err));
+    } else if (req.query['topic']) {
+        Tweets.find({ topic: req.query['topic'] })
+        .then((tweets) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(tweets);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
+    } else {
+        Tweets.find({})
+        .then((tweets) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(tweets);
+        }, (err) => next(err)) // Handle error
+        .catch((err) => next(err));
+    }
 })
 .post((req, res, next) => {
     Tweets.create(req.body)

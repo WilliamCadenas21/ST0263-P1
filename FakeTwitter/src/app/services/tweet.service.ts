@@ -37,17 +37,24 @@ export class TweetService {
         'Content-Type': 'application/json'
       })
     };
-    this.http.put<Tweet>(baseURL + 'tweets/' + tweet.id, tweet, httpOptions)
+    this.http.put<Tweet>(baseURL + 'tweets/' + tweet._id, tweet, httpOptions)
       .subscribe(response => {});
     // Subscribe to observables to activate them
   }
 
-  pushTweet(tweet: Tweet) {
-
+  pushTweet(author: string, topic: string, content: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    this.http.post<Tweet>(baseURL + 'tweets/',
+      { author: author, topic: topic, content: content }, httpOptions)
+      .subscribe(response => {});
   }
 
   deleteTweet(tweet: Tweet) {
-    this.http.delete(baseURL + 'tweets/' + tweet.id)
+    this.http.delete(baseURL + 'tweets/' + tweet._id)
       .subscribe(response => {});
   }
 

@@ -37,7 +37,7 @@
         <mat-list *ngIf="tweets">
             <mat-list-item *ngFor="let tweet of tweets">
                 <p matLine>@{{tweet.author}}</p>
-                <p class="gray-text" matLine>#{{tweet.topic}} {{tweet.date | date}}</p>
+                <p class="gray-text" matLine>#{{tweet.topic}} {{tweet.createdAt | date}}</p>
                 <p matLine>{{tweet.content}}</p>
                 <div *ngIf="userWrapper.user && userWrapper.user.username == tweet.author" matLine>
                     <button mat-raised-button class="separate" (click)="openEditForm(tweet)">Edit</button>

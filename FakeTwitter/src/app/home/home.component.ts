@@ -61,11 +61,12 @@ export class HomeComponent implements OnInit {
 
   deleteTweet(tweet: Tweet) {
     this.tweetService.deleteTweet(tweet);
-    this.ngOnInit();
   }
 
   openComposeForm() {
-    this.dialog.open(ComposeComponent);
+    this.dialog.open(ComposeComponent, {
+      data: this.userWrapper.user.username
+    });
   }
 
   openEditForm(tweet: Tweet) {
