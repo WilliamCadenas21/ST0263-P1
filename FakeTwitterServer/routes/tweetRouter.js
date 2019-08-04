@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const Tweets = require('../models/tweets');
 
@@ -9,7 +10,8 @@ const tweetRouter = express.Router();
 tweetRouter.use(bodyParser.json());
 
 tweetRouter.route('/')
-.get((req, res, next) => {
+.options(cors(), (req, res) => { res.sendStatus(200); })
+.get(cors(), (req, res, next) => {
     if (req.query['author']) {
         Tweets.find({ author: req.query['author'] })
         .then((tweets) => {
@@ -36,7 +38,7 @@ tweetRouter.route('/')
         .catch((err) => next(err));
     }
 })
-.post((req, res, next) => {
+.post(cors(), (req, res, next) => {
     Tweets.create(req.body)
         .then((tweet) => {
             console.log('Tweet created ', tweet);
@@ -46,17 +48,18 @@ tweetRouter.route('/')
         }, (err) => next(err)) // Handle error
         .catch((err) => next(err));
 })
-.put((req, res, next) => {
+.put(cors(), (req, res, next) => {
     res.statusCode = 403;
     res.end('PUT not supported');
 })
-.delete((req, res, next) => {
+.delete(cors(), (req, res, next) => {
     res.statusCode = 403;
     res.end('DELETE operation not supported')
 });
 
 tweetRouter.route('/:tweetId')
-.get((req, res, next) => {
+.options(cors(), (req, res) => { res.sendStatus(200); })
+.get(cors(), (req, res, next) => {
     Tweets.findById(req.params.tweetId)
         .then((tweet) => {
             res.statusCode = 200;
@@ -65,11 +68,11 @@ tweetRouter.route('/:tweetId')
         }, (err) => next(err)) // Handle error
         .catch((err) => next(err));
 })
-.post((req, res, next) => {
+.post(cors(), (req, res, next) => {
     res.statusCode = 403;
     res.end('POST not supported');
 })
-.put((req, res, next) => {
+.put(cors(), (req, res, next) => {
     Tweets.findByIdAndUpdate(req.params.tweetId, {
         $set: req.body
     }, { new: true })
@@ -80,7 +83,7 @@ tweetRouter.route('/:tweetId')
         }, (err) => next(err)) // Handle error
         .catch((err) => next(err));
 })
-.delete((req, res, next) => {
+.delete(cors(), (req, res, next) => {
     Tweets.findByIdAndRemove(req.params.tweetId)
         .then((resp) => {
             req.statusCode = 200;

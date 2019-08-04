@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 var User = require('../models/users');
 
@@ -10,11 +11,11 @@ var router = express.Router();
 router.use(bodyParser.json());
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', cors(), function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', cors(), (req, res, next) => {
   User.register( new User({username: req.body.username}),
     req.body.password, (err, user) => {
     if(err) {
@@ -32,7 +33,7 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
-router.post('/login', passport.authenticate('local'),
+router.post('/login', cors(), passport.authenticate('local'),
   (req, res) => {
     // This will only occurr if authenticate is successfull
     res.statusCode = 200;
