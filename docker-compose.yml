@@ -6,7 +6,7 @@ services:
     hostname: localhost
     build: FakeTwitter # specify the directory of the Dockerfile
     ports:
-      - "8181:80" # specify port forewarding
+      - "80:80" # specify port forewarding
 
   express: #name of the second service
     build: FakeTwitterServer # specify the directory of the Dockerfile
