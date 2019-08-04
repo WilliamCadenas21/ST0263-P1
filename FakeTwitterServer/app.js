@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var passport = require('passport');
+var authenticate = require('./authenticate');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,9 +34,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
+
+app.use(passport.initialize());
+// app.use(passport.session());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tweets', tweetRouter);
+
+function auth(req, res, next) {
+  if (!req.user) {
+    var err = new Error('You are not authenticated!');
+    err.status = 403;
+    return next(err);
+  } else {
+    next();
+  }
+}
+
+app.use(auth);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
