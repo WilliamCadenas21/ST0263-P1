@@ -14,7 +14,10 @@ var tweetRouter = require('./routes/tweetRouter');
 const mongoose = require('mongoose');
 const Tweets = require('./models/tweets');
 
-const url = 'mongodb://localhost:27017/fakeTwitterDB'
+// MongoDB URL for non docker tests
+// const url = 'mongodb://localhost:27017/fakeTwitterDB'
+// MongoDB URL from the docker-compose file
+const url = 'mongodb://database/fakeTwitterDB'
 const connect = mongoose.connect(url);
 
 connect.then((db) => {
