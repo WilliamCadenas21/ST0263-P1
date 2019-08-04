@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../services/login.service';
 import { UserWrapper } from '../shared/userWrapper';
+import { SingupComponent } from '../singup/singup.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -28,7 +29,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openSignUpForm() {
-
+    this.dialog.open(SingupComponent);
   }
 
   logOut() {

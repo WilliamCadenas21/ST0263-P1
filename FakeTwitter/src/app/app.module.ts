@@ -60,6 +60,7 @@ import { EditComponent } from './edit/edit.component';
   ],
   entryComponents: [
     LoginComponent,
+    SingupComponent,
     ComposeComponent,
     EditComponent
   ],
