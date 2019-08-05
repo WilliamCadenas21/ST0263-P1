@@ -28,10 +28,29 @@ Desarrollo de la primera semana de contenido:
     * System/Grandes -> probar todo el sistem (Usualmente hechos por testers)
     * Integration/Medianos -> probar interacción entre funciones (Punto intermedio)
     * Unit/Pequeños -> probar funciones aisladas (Usualmente hechos por desarrolladores)
-*
 
 ### Progreso en proyecto 1
 * Reconfiguración del front end para que use servicios
 * Rediseño de partes de la página
 * Adición de más secciones
 * Empezar a aprender a hacer el back end con mongo y nodejs
+
+## 29-07-2019 - 04-08-2019 (Semana 3)
+### MOOC DevOps
+* Desarrollo de la semana 3 del curso (Ops)
+* Ops son los encargados de diseñar (arquitectura), desplegar, mantener y monitorear el sistema.
+* La nube a permitido automatizar este trabajo.
+* Usualmente velocidad va en contra de estabilidad. DevOps intenta reducir esto.
+* Infraestructura como código.
+* Se busca dispobinibilad
+    * Tiempo medio entre fallas
+    * Tiempo medio de reparación
+* Se busca baja latencia
+* Se busca reducir costos
+* Herramientas de Ops
+    * Version control - integración continua hace que se reduzcan conglictos.
+
+### Progreso en proyecto 1
+* Finalización de la implementación de todas las funcionalidades, aunque aún hay espacio para mejorar.
+* "Dockerización" de los 3 componentes angular, express, mongo.
+* "Dockerización" funciona en localhost, pero parece haber un problema en el cliente al probarlo en AWS o DCA, pero los otros contenedores funcionan correctamente.
