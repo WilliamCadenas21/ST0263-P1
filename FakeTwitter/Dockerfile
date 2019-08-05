@@ -12,9 +12,8 @@ WORKDIR /usr/src/app
 
 # Copy dependency definitions
 
-# COPY package*.json ./
-
-COPY dist/ ./
+COPY package*.json ./
+# COPY dist/ ./
 
 # Install dependecies
 
@@ -22,10 +21,10 @@ COPY dist/ ./
 
 # Get all the code needed to run the app
 
-# COPY . ./
+COPY . ./
 
 # Run the angular in product
-# RUN npm run build
+RUN npm run build
 
 # Stage 2
 FROM nginx:1.13.12-alpine
