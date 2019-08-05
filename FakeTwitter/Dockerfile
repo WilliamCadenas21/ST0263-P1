@@ -17,7 +17,7 @@ COPY package*.json ./
 
 # Install dependecies
 
-# RUN npm install
+RUN npm install
 
 # Get all the code needed to run the app
 
@@ -30,7 +30,7 @@ RUN npm run build
 FROM nginx:1.13.12-alpine
 
 #copy dist content to html nginx folder, config nginx to point in index.html
-COPY --from=node /usr/src/app/FakeTwitter /usr/share/nginx/html
+COPY --from=node /usr/src/app/dist/FakeTwitter /usr/share/nginx/html
 #COPY --from=node /usr/src/app/dist /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
