@@ -1,1 +1,1 @@
-export const baseURL = 'http://express:3000/';
+export const baseURL = 'http://localhost/data/';

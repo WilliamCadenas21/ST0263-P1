@@ -8,6 +8,7 @@ services:
     ports:
       - "80:80" # specify port forewarding
       - "433:433"
+      - "8080:8080"
     depends_on:
       - express
 
