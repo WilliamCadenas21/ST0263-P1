@@ -6,6 +6,7 @@ Proyecto 1 Tópicos especiales en telemática
     * ```$ git clone https://github.com/fighur/ST0263-P1.git```
 * Ir al directorio del proyecto
     * ```$ cd ST0263-P1```
+* Cambiar URL en FakeTwitter/src/app/shared/baseurl.ts por la URL del servidor
 * (Opcional) https
     * ```$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout FakeTwitter/ssl/nginx.key -out FakeTwitter/ssl/nginx.crt```
 * Ir al directorio base y construir el proyecto
