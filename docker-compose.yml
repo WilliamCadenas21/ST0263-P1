@@ -7,7 +7,7 @@ services:
     build: FakeTwitter # specify the directory of the Dockerfile
     ports:
       - "80:80" # specify port forewarding
-      - "433:433"
+      - "443:443"
     links:
       - express
     depends_on:
