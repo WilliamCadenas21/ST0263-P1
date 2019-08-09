@@ -12,26 +12,26 @@ WORKDIR /usr/src/app
 
 # Copy dependency definitions
 
-COPY package*.json ./
-# COPY dist/ ./
+# COPY package*.json ./
+COPY dist/ ./
 
 # Install dependecies
 
-RUN npm install
+# RUN npm install
 
 # Get all the code needed to run the app
 
 COPY . ./
 
 # Run the angular in product
-RUN npm run build
+# RUN npm run build
 
 # Stage 2
 FROM nginx:1.13.12-alpine
 
 #copy dist content to html nginx folder, config nginx to point in index.html
+# COPY --from=node /usr/src/app/dist/FakeTwitter /usr/share/nginx/html
 COPY --from=node /usr/src/app/dist/FakeTwitter /usr/share/nginx/html
-#COPY --from=node /usr/src/app/dist /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./ssl /etc/nginx/ssl
+# COPY ./ssl /etc/nginx/ssl

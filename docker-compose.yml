@@ -2,16 +2,26 @@ version: '2' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
-  angular: # name of the first service
+  nginx: # name of the first service
     hostname: localhost
     build: FakeTwitter # specify the directory of the Dockerfile
+    volumes:
+      - ./FakeTwitter/certbot/conf:/etc/letsencrypt
+      - ./FakeTwitter/certbot/www:/var/www/certbot
     ports:
       - "80:80" # specify port forewarding
       - "443:443"
     links:
       - express
     depends_on:
+      - certbot
       - express
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./FakeTwitter/certbot/conf:/etc/letsencrypt
+      - ./FakeTwitter/certbot/www:/var/www/certbot
 
   express: #name of the second service
     build: FakeTwitterServer # specify the directory of the Dockerfile
