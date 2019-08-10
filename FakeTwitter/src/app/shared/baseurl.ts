@@ -1,1 +1,1 @@
-export const baseURL = 'http://localhost/data/';
+export const baseURL = 'https://jortizp.dis.eafit.edu.co/data/';
