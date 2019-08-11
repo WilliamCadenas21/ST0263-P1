@@ -16,4 +16,17 @@ Proyecto 1 Tópicos especiales en telemática
 * Crear una cuenta dando click en sign up
 * Si la creación fué exitosa debería aparecer un botón debajo del formulario de filtro con la etiqueta ```Compose``` para crear un comentario.
 * Para editar o eliminar un comentario, primero se debe ingresar con una cuenta. Y si la cuenta tiene comentarios asociados a ella, apareceran dos botones, ```Edit``` y ```Delete``` en la parte de abajo de estos comentarios.
-* Para ver cambios en comentarios dar click al botón ```Refresh```.
+* Para ver cambios en los comentarios dar click al botón ```Refresh```.
+
+# Version DCA
+En la rama 'dca'.
+
+URLs webapp (funciona con http y https):
+* jortizp.dis.eafit.edu.co
+
+# Version AWS
+En la rama 'aws'.
+
+URLs webapp (funciona con http y https):
+* valentarmo-st0263p1.tk
+* www.valentarmo-st0263p1.tk

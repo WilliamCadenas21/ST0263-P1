@@ -48,9 +48,29 @@ Desarrollo de la primera semana de contenido:
 * Se busca baja latencia
 * Se busca reducir costos
 * Herramientas de Ops
-    * Version control - integración continua hace que se reduzcan conglictos.
+    * Version control - integración continua hace que se reduzcan conflictos.
 
 ### Progreso en proyecto 1
 * Finalización de la implementación de todas las funcionalidades, aunque aún hay espacio para mejorar.
 * "Dockerización" de los 3 componentes angular, express, mongo.
 * "Dockerización" funciona en localhost, pero parece haber un problema en el cliente al probarlo en AWS o DCA, pero los otros contenedores funcionan correctamente.
+
+## 05-08-2019 - 11-08-2019 (Semana 4)
+### MOOC DevOps
+* Desarrollo de la semana 4 del curso (CI [Continuous integration] y CD [Continuous delivery])
+* Herramientas (algunas)
+    * Jenkins
+    * Travis
+    * Elysian
+    * Circle CI
+* Pull Requests > Direct Merge (usualmente) por que de este modo se activan más pruebas y revisiones.
+* Un buen sistema CI/CD deberia ser eficiente construyendo y desplegando la aplicación, claro con los resultados de las pruebas, y no deberia requerir de mucho mantenimiento.
+* Hay tensión entre velocidad y estabilidad.
+* Métodos para mitigar downtime debido a errores inesperados en la CI/CD pipeline e incrementar velocidad de integración:
+    * Rollback
+    * Blue/Green pattern - Tener un "bloque" de desarrollo y un "bloque" para usuarios, que se intercambian cada que hay cambios estables.
+    * Feature Flags - Anillos de usuarios, se empieza a probar con los usuarios "internos" y continua capa por capa hacia los externos, permite un tipo de switch de funcionalidades.
+* Microservicios - Aplicaciones pequeñas que son independientes pero interactuan entre ellas, este patrón es más escalable, pero mas dificil de poner a prueba.
+
+### Progreso en proyecto 1
+* Despliegue de la aplicación en AWS y DCA con soporte para https.
