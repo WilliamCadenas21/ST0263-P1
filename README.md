@@ -1,5 +1,14 @@
 # ST0263-P1
-Proyecto 1 Tópicos especiales en telemática
+Proyecto 1 Tópicos especiales en telemática (aplicación web de registro de comentarios)
+
+# Tecnologias utilizadas
+* Front-end ------> Angular
+* Back-end -------> Express (Javascript)
+* Base de datos --> Mongodb
+* Servidor web ---> Nginx
+
+# Consideraciones
+* No se utilicé cookies
 
 # Uso
 * Clonar el repositorio
